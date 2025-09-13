@@ -1,0 +1,19 @@
+{
+  "name": "dio-challenge-champions-league-api-node-express",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "dist": "tsup src",
+    "start:dev": "tsx src/server.ts",
+    "start:watch": "tsx src/server.ts --watch",
+    "start:dist": "npm run dist && node dist/src/inde.js"
+  },
+  "author": "JP",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
