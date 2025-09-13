@@ -15,3 +15,16 @@ export const getPlayersData = async () => {
     
     return response;
 }
+
+export const getPlayerByIdService = async (id: number) => {
+    const data = await PlayerRepository.getPlayerbyId(id);
+    let response = null;
+
+    if(data) {
+        response = await ok(data);
+    } else {
+        response = await noContent();
+    }
+
+    return response;
+}
