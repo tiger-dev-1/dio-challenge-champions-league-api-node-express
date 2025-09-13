@@ -1,7 +1,5 @@
-interface PlayerModel {
-    id: number;
-    name: string;
-}
+import { PlayerModel } from "../models/player-model";
+
 
 const database: PlayerModel[] = [
     {
@@ -12,7 +10,10 @@ const database: PlayerModel[] = [
         id: 2,
         name: "Marta Silva"
     },
-
+    {
+        id: 3,
+        name: "Lionel Messi"
+    },
 ];
 
 export const getPlayers = async (): Promise<PlayerModel[]> => {
