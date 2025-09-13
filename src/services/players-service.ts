@@ -3,7 +3,7 @@
 export const getPlayersData = async () => {
     return (
         {
-            player: "Lionel Messi"
+            player: "Ronaldo Fenômeno"
         }
     )
 }
