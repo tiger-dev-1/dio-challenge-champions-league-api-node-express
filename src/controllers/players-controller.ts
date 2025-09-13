@@ -4,8 +4,8 @@ import { ok } from "../utils/http-helper";
 
 
 export const getPlayers = async (req: Request, res: Response) => {
-    const data = await getPlayersData();
-    const response = await ok(data);
+    const httpResponse = await getPlayersData();
 
-    res.status(response.statusCode).json(response.body);
+        res.status(httpResponse.statusCode).json(httpResponse.body);
+
 }
