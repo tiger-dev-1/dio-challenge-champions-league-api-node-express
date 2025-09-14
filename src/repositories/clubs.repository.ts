@@ -1,13 +1,9 @@
 import { ClubModel } from "../models/club-model";
-
-const database = [
-    {
-        id: 1,
-        name: "Paris Saint-Germain",
-    },
-]
-
+import fs from "fs/promises";
 
 export const getClubs = async (): Promise<ClubModel[]> => {
-    return database;
+    const data = await fs.readFile("./src/data/clubs.json", "utf-8");
+    const clubs = JSON.parse(data);
+
+    return clubs;
 };
