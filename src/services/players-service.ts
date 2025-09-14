@@ -1,5 +1,6 @@
+import { PlayerModel } from "../models/player-model";
 import * as PlayerRepository from "../repositories/players-repository";
-import { noContent, ok } from "../utils/http-helper";
+import { badRequest, created, noContent, ok } from "../utils/http-helper";
 
 
 export const getPlayersData = async () => {
@@ -28,3 +29,32 @@ export const getPlayerByIdService = async (id: number) => {
 
     return response;
 }
+
+export const addPlayerService = async (player: PlayerModel) => {
+    
+    if(Object.keys(player).length !== 0) {
+        await PlayerRepository.addPlayer(player);
+        return created(player);
+    } else {
+        return badRequest();
+    }
+
+}
+
+export const deletePlayerService = async (id: number) => {
+
+    let response = null;
+    const player = await PlayerRepository.deletePlayer(id);
+
+    response = ok(`Player ID: ${id} deleted`);
+
+    return response;
+}
+    
+    // if(id) {
+    //     await PlayerRepository.deletePlayer(player);
+    //     return created(player);
+    // } else {
+    //     return badRequest();
+    // }
+

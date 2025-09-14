@@ -182,3 +182,15 @@ export const getPlayerbyId = async (id: number): Promise<PlayerModel | undefined
     return database.find(player => player.id === id);
 };
 
+export const addPlayer = async (player: PlayerModel): Promise<PlayerModel | undefined> => {
+    database.push(player);
+    return player;
+};
+
+export const deletePlayer = async (id: number) => {
+    const index = database.findIndex(player => player.id === id);
+    if (index !== -1) {
+        database.splice(index, 1);
+    }
+};
+
