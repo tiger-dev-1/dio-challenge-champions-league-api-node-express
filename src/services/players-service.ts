@@ -1,4 +1,5 @@
 import { PlayerModel } from "../models/player-model";
+import { StatisticsModel } from "../models/statistics-model";
 import * as PlayerRepository from "../repositories/players-repository";
 import { badRequest, created, noContent, ok } from "../utils/http-helper";
 
@@ -41,10 +42,29 @@ export const addPlayerService = async (player: PlayerModel) => {
 
 }
 
+export const updatePlayerService = async (id: number, statistics: StatisticsModel) => {
+
+    let response = null;
+
+     response = await PlayerRepository.updatePlayer(id, statistics);
+
+    if (Object.keys(response).length === 0  ) {
+        return badRequest();
+    }
+
+    return ok(response);
+}
+
 export const deletePlayerService = async (id: number) => {
 
     let response = null;
-    const player = await PlayerRepository.deletePlayer(id);
+    const isDeleted = await PlayerRepository.deletePlayer(id);
+
+    if (!isDeleted) {
+        return badRequest();
+    }
+
+    await PlayerRepository.deletePlayer(id);
 
     response = ok(`Player ID: ${id} deleted`);
 
